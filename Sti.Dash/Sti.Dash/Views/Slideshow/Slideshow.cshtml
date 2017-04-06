@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Sti.Dash.Slideshow>
+
+@{
+    Layout = null;
+}
+<table class="table">
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.text)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.image)
+        </td>
+    </tr>
+}
+</table>

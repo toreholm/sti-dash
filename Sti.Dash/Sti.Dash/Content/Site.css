@@ -1,0 +1,70 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background-color: rgb(0,55,55);
+    width: 90%;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootastrap behavior where horizontal description lists 
+   will truncate terms that are too losng to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+@media (min-width: 1200px) {
+    .container {
+        width: 90%;
+    }
+}
+/* Set width on the form input elemenstss sssince they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+.container {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 95%; /* or 950px */
+}
+/*
+.slideshow{
+    border: dashed;
+}
+
+.sales {
+    background-color: blue;
+}
+.analytics {
+    background-color: darkred;
+}
+.gap {
+    background-color: grey;ss
+}*/
+
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.jumbotron {
+    padding: 10px;
+    margin-bottom: 40px;
+    margin-right: 20px;
+    font-size: 21px;
+    font-weight: 200;
+    line-height: 2.1428571435;
+    background-color: rgb(237,237,237);
+}

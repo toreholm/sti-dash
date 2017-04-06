@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="STI.Dash.DashboardModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Leader" Type="Int32" />
+    <Property Name="Picture" Type="String" MaxLength="250" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Person" Relationship="Self.FK_Department_Person" FromRole="Department" ToRole="Person" />
+    <NavigationProperty Name="People" Relationship="Self.FK_Person_Department_Employee" FromRole="Department" ToRole="Person" />
+  </EntityType>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LimeId" Type="Int32" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Picture" Type="String" MaxLength="250" FixedLength="true" Unicode="true" />
+    <Property Name="DepartmentId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Departments" Relationship="Self.FK_Department_Person" FromRole="Person" ToRole="Department" />
+    <NavigationProperty Name="Department" Relationship="Self.FK_Person_Department_Employee" FromRole="Person" ToRole="Department" />
+  </EntityType>
+  <Association Name="FK_Department_Person">
+    <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+    <End Role="Department" Type="Self.Department" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Department">
+        <PropertyRef Name="Leader" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Person_Department_Employee">
+    <End Role="Department" Type="Self.Department" Multiplicity="1" />
+    <End Role="Person" Type="Self.Person" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Person">
+        <PropertyRef Name="DepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DashboardContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Departments" EntityType="Self.Department" />
+    <EntitySet Name="People" EntityType="Self.Person" />
+    <AssociationSet Name="FK_Department_Person" Association="Self.FK_Department_Person">
+      <End Role="Person" EntitySet="People" />
+      <End Role="Department" EntitySet="Departments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Person_Department_Employee" Association="Self.FK_Person_Department_Employee">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="Person" EntitySet="People" />
+    </AssociationSet>
+    <EntitySet Name="Slideshows" EntityType="STI.Dash.DashboardModel.Slideshow" />
+    <EntitySet Name="Slideshow_archive" EntityType="STI.Dash.DashboardModel.Slideshow_archive" />
+  </EntityContainer>
+  <EntityType Name="Slideshow">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="text" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="image" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Slideshow_archive">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="text" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="image" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

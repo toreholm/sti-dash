@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SlideshowStoreContainer" CdmEntityContainer="DashboardEntities2">
+    <EntitySetMapping Name="slideshow">
+      <EntityTypeMapping TypeName="Slideshow.slideshow">
+        <MappingFragment StoreEntitySet="slideshow">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="text" ColumnName="text" />
+          <ScalarProperty Name="image" ColumnName="image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="slideshow_archive">
+      <EntityTypeMapping TypeName="Slideshow.slideshow_archive">
+        <MappingFragment StoreEntitySet="slideshow_archive">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="text" ColumnName="text" />
+          <ScalarProperty Name="image" ColumnName="image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
